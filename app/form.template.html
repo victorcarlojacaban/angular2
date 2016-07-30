@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>Simple Task List</h1>
+    </div>
+    <div>
+        <form (submit)="addTask($event)" class="form-group">
+            <table class="table">
+                <tr>
+                    <td>Task Name</td>
+                    <td><input [(ngModel)]="newTask" (keyup.enter)="newTask=''" class="input-group"></td>
+                </tr>
+                <tr>
+                    <td> <button class='btn btn-primary' type="submit" [disabled]="newTask===''">Add Task</button></td>
+                    <td>Now Typing: {{ newTask }}</td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <br/><br/>
+    <h3>Task List</h3>
+        <table class='table table-striped'>
+            <tr *ngFor="#task of tasks #i=index">
+                <td> <input type="checkbox" class="checkbox" [(ngModel)]="task.done"/></td>
+                <td> <span [ngClass]="{'checked': task.done}">{{ task.newTask }}</span></td>
+                <td><button class="btn btn-danger" (click)="deleteTask(i)">Delete</button></td>
+              </tr>
+        </table>
+</div>
